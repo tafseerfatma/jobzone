@@ -1,0 +1,10 @@
+.btn-join {
+  width: 200px;
+  height: 50px;
+  margin-left: 700px;
+  margin-top: 500px !important;
+  background-color: brown;
+  color: white;
+  border-radius: 8px;
+  font-style: bold;
+}
