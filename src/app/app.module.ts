@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -15,7 +14,7 @@ import { SupportComponent } from './support/support.component';
 import { SearchCandidatesComponent } from './search-candidates/search-candidates.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { PostJobsComponent } from './post-jobs/post-jobs.component';
-
+import { JobportalService } from './jobportal.service';
 
 @NgModule({
   declarations: [
@@ -29,15 +28,15 @@ import { PostJobsComponent } from './post-jobs/post-jobs.component';
     SupportComponent,
     SearchCandidatesComponent,
     ViewProfileComponent,
-    PostJobsComponent,
-     
+    PostJobsComponent
    ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-   
+    JobportalService,
+    Injectable
   ],
   providers: [],
   bootstrap: [AppComponent]

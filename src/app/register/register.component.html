@@ -6,15 +6,15 @@
           <h4>Sign Up for a free account</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form formGroup="registerForm" (ngSubmit)="onSubmit(registerForm)">
             <div class="mb-3">
               <label for="firstName" class="form-label">First Name</label>
-              <input
+              <input  
                 type="text"
                 class="form-control"
                 id="firstName"
-                [(ngModel)]="user.firstName"
                 name="firstName"
+                formControlName="firstName"
                 required
               />
             </div>
@@ -24,8 +24,8 @@
                 type="text"
                 class="form-control"
                 id="lastName"
-                [(ngModel)]="user.lastName"
                 name="lastName"
+                formControlName="lastName"
                 required
               />
             </div>
@@ -35,8 +35,8 @@
                 type="email"
                 class="form-control"
                 id="email"
-                [(ngModel)]="user.email"
                 name="email"
+                formControlName="email"
                 required
               />
             </div>
@@ -46,8 +46,8 @@
                 type="password"
                 class="form-control"
                 id="password"
-                [(ngModel)]="user.password"
                 name="password"
+                formControlName="password"
                 required
               />
             </div>
@@ -58,8 +58,8 @@
                 type="password"
                 class="form-control"
                 id="confirmpassword"
-                [(ngModel)]="user.password"
                 name="password"
+                formControlName="confirmpassword"
                 required
               />
             </div>
@@ -71,6 +71,7 @@
                   name="userType"
                   id="jobseeker"
                   value="jobseeker"
+                  formControlName="userType"
                 />
                 <label class="form-check-label" for="jobseeker">
                   Jobseeker
@@ -83,6 +84,7 @@
                   name="userType"
                   id="employer"
                   value="employer"
+                  formControlName="userType"
                 />
                 <label class="form-check-label" for="Employer">
                   Employer
