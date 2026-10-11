@@ -21,4 +21,11 @@ const employerOnly = (req, res, next) => {
   next();
 };
 
-module.exports = { protect, employerOnly };
+const jobseekerOnly = (req, res, next) => {
+  if (req.user.role !== "jobseeker") {
+    return res.status(403).json({ message: "Job seekers only" });
+  }
+  next();
+};
+
+module.exports = { protect, employerOnly, jobseekerOnly };
