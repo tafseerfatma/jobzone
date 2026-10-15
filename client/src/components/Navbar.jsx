@@ -11,12 +11,30 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={{ display: "flex", gap: 16, padding: 16, borderBottom: "1px solid #ddd" }}>
-      <Link to="/"><b>Jobzone</b></Link>
+    <nav
+      style={{
+        display: "flex",
+        gap: 16,
+        padding: 16,
+        borderBottom: "1px solid #ddd",
+      }}
+    >
+      <Link to="/">
+        <b>Jobzone</b>
+      </Link>
       <div style={{ marginLeft: "auto", display: "flex", gap: 16 }}>
         {user ? (
           <>
-            <span>Hi, {user.name} ({user.role})</span>
+            {user.role === "employer" && (
+              <>
+                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/post-job">Post job</Link>
+              </>
+            )}
+            {user.role === "jobseeker" && (
+              <Link to="/my-applications">My applications</Link>
+            )}
+            <span>Hi, {user.name}</span>
             <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
