@@ -11,18 +11,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      style={{
-        display: "flex",
-        gap: 16,
-        padding: 16,
-        borderBottom: "1px solid #ddd",
-      }}
-    >
-      <Link to="/">
-        <b>Jobzone</b>
-      </Link>
-      <div style={{ marginLeft: "auto", display: "flex", gap: 16 }}>
+    <nav className="navbar">
+      <Link to="/" className="brand">Jobzone</Link>
+      <div className="nav-links">
         {user ? (
           <>
             {user.role === "employer" && (
@@ -31,11 +22,9 @@ export default function Navbar() {
                 <Link to="/post-job">Post job</Link>
               </>
             )}
-            {user.role === "jobseeker" && (
-              <Link to="/my-applications">My applications</Link>
-            )}
-            <span>Hi, {user.name}</span>
-            <button onClick={handleLogout}>Logout</button>
+            {user.role === "jobseeker" && <Link to="/my-applications">My applications</Link>}
+            <span className="nav-user">Hi, {user.name}</span>
+            <button className="btn-outline" onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>

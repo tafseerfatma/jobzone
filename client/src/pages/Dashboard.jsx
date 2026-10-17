@@ -45,12 +45,12 @@ export default function Dashboard() {
 
       <div style={{ display: "grid", gap: 12 }}>
         {jobs.map((job) => (
-          <div key={job._id} style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12 }}>
+          <div key={job._id} className="card">
             <h3 style={{ margin: 0 }}>{job.title}</h3>
             <p style={{ margin: "4px 0" }}>{job.company} · {job.location}</p>
             <div style={{ display: "flex", gap: 12 }}>
               <Link to={`/dashboard/jobs/${job._id}/applicants`}>View applicants</Link>
-              <button onClick={() => handleDelete(job._id)}>Delete</button>
+              <button className="btn-danger" onClick={() => handleDelete(job._id)}>Delete</button>
             </div>
           </div>
         ))}

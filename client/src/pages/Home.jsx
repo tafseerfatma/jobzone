@@ -48,7 +48,7 @@ export default function Home() {
       <div style={{ display: "grid", gap: 12 }}>
         {jobs.map((job) => (
           <Link key={job._id} to={`/jobs/${job._id}`} style={{ textDecoration: "none", color: "inherit" }}>
-            <div style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12 }}>
+            <div className="card">
               <h3 style={{ margin: 0 }}>{job.title}</h3>
               <p style={{ margin: "4px 0" }}>{job.company} · {job.location} · {job.type}</p>
               {job.skills?.length > 0 && <small>Skills: {job.skills.join(", ")}</small>}

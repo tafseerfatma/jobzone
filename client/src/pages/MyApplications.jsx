@@ -24,7 +24,7 @@ export default function MyApplications() {
 
       <div style={{ display: "grid", gap: 12 }}>
         {applications.map((app) => (
-          <div key={app._id} style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12 }}>
+          <div key={app._id} className="card">
             {app.job ? (
               <Link to={`/jobs/${app.job._id}`}><b>{app.job.title}</b></Link>
             ) : (

@@ -36,10 +36,10 @@ export default function JobApplicants() {
 
       <div style={{ display: "grid", gap: 12 }}>
         {applications.map((app) => (
-          <div key={app._id} style={{ border: "1px solid #ddd", borderRadius: 8, padding: 12 }}>
+          <div key={app._id} className="card">
             <b>{app.applicant?.name}</b> · {app.applicant?.email}
             {app.coverNote && <p style={{ margin: "6px 0" }}>"{app.coverNote}"</p>}
-            <p style={{ margin: "6px 0" }}>Status: <b>{app.status}</b></p>
+            <p style={{ margin: "6px 0" }}>  Status: <span className={`badge badge-${app.status}`}>{app.status}</span></p>
             <div style={{ display: "flex", gap: 8 }}>
               <button onClick={() => updateStatus(app._id, "shortlisted")}>Shortlist</button>
               <button onClick={() => updateStatus(app._id, "rejected")}>Reject</button>
