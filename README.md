@@ -3,7 +3,6 @@
 A full-stack MERN job portal. Employers post jobs and review applicants. Job seekers search and apply.
 
 **Live demo:** https://jobzone-three.vercel.app
-*(The free server may take up to a minute to wake up on the first visit.)*
 
 ## Demo accounts
 
