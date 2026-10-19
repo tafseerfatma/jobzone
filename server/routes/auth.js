@@ -13,7 +13,9 @@ const makeToken = (user) =>
 // POST /api/auth/signup
 router.post("/signup", async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, password, role } = req.body;
+    const email = (req.body.email || "").toLowerCase().trim();
+
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
@@ -28,16 +30,23 @@ router.post("/signup", async (req, res) => {
       user: { id: user._id, name: user.name, email: user.email, role: user.role },
     });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err.code === 11000) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+    console.error(err);
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 });
 
 // POST /api/auth/login
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { password } = req.body;
+    const email = (req.body.email || "").toLowerCase().trim();
     const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: "Invalid email or password" });
+    if (!user) return res.status(400).json({ 
+      
+      message: "Invalid email or password" });
 
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ message: "Invalid email or password" });
@@ -47,7 +56,11 @@ router.post("/login", async (req, res) => {
       user: { id: user._id, name: user.name, email: user.email, role: user.role },
     });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    if (err.code === 11000) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+    console.error(err);
+    res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 });
 

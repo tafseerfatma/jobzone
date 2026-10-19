@@ -7,19 +7,23 @@ export default function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await login(form.email, form.password);
-      navigate("/");
-    } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong");
-    }
-  };
+  e.preventDefault();
+  setError("");
+  setLoading(true);
+  try {
+    await login(form.email, form.password);    
+    navigate("/");
+  } catch (err) {
+    setError(err.response?.data?.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} style={{ maxWidth: 360, margin: "40px auto", display: "grid", gap: 12 }}>
@@ -27,7 +31,10 @@ export default function Login() {
       {error && <p style={{ color: "red" }}>{error}</p>}
       <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required />
       <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} required />
-      <button type="submit">Login</button>
+      <button type="submit" disabled={loading}>
+  {loading ? "Please wait..." : "Login"}
+</button>
+{loading && <small>The server may take up to a minute to wake up the first time.</small>}
     </form>
   );
 }

@@ -7,19 +7,23 @@ export default function Signup() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", password: "", role: "jobseeker" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await signup(form);
-      navigate("/");
-    } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong");
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setLoading(true);
+  try {
+    await signup(form);     
+    navigate("/");
+  } catch (err) {
+    setError(err.response?.data?.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} style={{ maxWidth: 360, margin: "40px auto", display: "grid", gap: 12 }}>
@@ -32,7 +36,10 @@ export default function Signup() {
         <option value="jobseeker">I'm looking for a job</option>
         <option value="employer">I'm hiring</option>
       </select>
-      <button type="submit">Create account</button>
+      <button type="submit" disabled={loading}>
+      {loading ? "Please wait..." : "Create account"}
+      </button>
+      {loading && <small>The server may take up to a minute to wake up the first time.</small>}
     </form>
   );
 }
