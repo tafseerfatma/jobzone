@@ -2,14 +2,14 @@
 
 A full-stack MERN job portal. Employers post jobs and review applicants. Job seekers search and apply.
 
-**Live demo:** https://jobzone-three.vercel.app
+**Live demo:** https://jobzone-fyyi.vercel.app/
 
 ## Demo accounts
 
 | Role | Email | Password |
 |---|---|---|
-| Employer | tafseer001@gmail.com | tafseer001@gmail.com |
-| Job seeker | meera12@gmail.com | meera12@gmail.com |
+| Employer | employer1@gmail.com | Employer12@ |
+| Job seeker | jobseeker@gmail.com | Jobseeker1@ |
 
 ## Features
 
